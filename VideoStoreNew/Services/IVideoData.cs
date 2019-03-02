@@ -13,5 +13,7 @@ namespace VideoStoreNew.Services
         Video Get(int id);
 
         void Add(Video newVideo);
+
+        int Commit();
     }
 }

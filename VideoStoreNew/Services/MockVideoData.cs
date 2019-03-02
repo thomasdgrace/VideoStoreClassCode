@@ -26,6 +26,11 @@ namespace VideoStoreNew.Services
             _videos.Add(newVideo);
         }
 
+        public int Commit()
+        {
+            return 0;
+        }
+
         public Video Get(int id)
         {
             return _videos.FirstOrDefault(v => v.Id.Equals(id));
