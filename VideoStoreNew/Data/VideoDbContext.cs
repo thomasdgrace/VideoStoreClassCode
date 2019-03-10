@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using VideoStoreNew.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace VideoStoreNew.Data
 {
-    public class VideoDbContext : DbContext 
+    public class VideoDbContext : IdentityDbContext<User> 
     {
         public DbSet<Video> Videos { get; set; }
 

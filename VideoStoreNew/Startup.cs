@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using VideoStoreNew.Services;
 using VideoStoreNew.Data;
 using Microsoft.EntityFrameworkCore;
+using VideoStoreNew.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace VideoStoreNew
 {
@@ -39,7 +41,9 @@ namespace VideoStoreNew
             // Adding the Db Context that we made in the data folder to the project and configring the options in its contructor to use SQL server
             var conn = Configuration.GetConnectionString("DefaultConnection");            
             services.AddDbContext<VideoDbContext>(options => options.UseSqlServer(conn));
-
+            //Add the Identity Services 
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<VideoDbContext>();
             //Add the MVC routing 
             services.AddMvc();
             //Add the JSON appsetting services to the project to use 
@@ -62,6 +66,7 @@ namespace VideoStoreNew
                 app.UseDeveloperExceptionPage();
             }
             //app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

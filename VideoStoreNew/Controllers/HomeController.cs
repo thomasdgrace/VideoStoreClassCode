@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using VideoStoreNew.Entities;
 using VideoStoreNew.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 using VideoStoreNew.Services;
 
 namespace VideoStoreNew.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         //A private variable to hold the Db context, which is a IVideoData type
@@ -19,6 +21,7 @@ namespace VideoStoreNew.Controllers
             //Assigns the IVideoData object, which is the DB context to the private vareiable on instantiaon
             _videos = videos;
         }
+        [AllowAnonymous]
         public ViewResult index()
         {
             var model = _videos.GetAll().Select(video =>
