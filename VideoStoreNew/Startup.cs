@@ -65,8 +65,9 @@ namespace VideoStoreNew
             {
                 app.UseDeveloperExceptionPage();
             }
-            //app.UseStaticFiles();
+           
             app.UseAuthentication();
+            app.UseStaticFiles();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
